@@ -1,0 +1,129 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .slideshow {
+        position: relative;
+        max-width: 75%;
+        margin: auto;
+        overflow: hidden;
+        border: 1px solid #ccc;
+    }
+
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+        flex: 0 0 100%;
+        max-width: 100%;
+        position: relative;
+    }
+
+        .slide img {
+            width:100%;
+        }
+
+    .caption {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .dots {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: #bbb;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+        .dot.active {
+            background-color: #333;
+        }
+</style>
+<div class="text-center">
+    <h1 class="display-4">Home</h1>
+    <div class="slideshow">
+        <div class="slides">
+            <div class="slide" data-caption="Mountain Top"><img src="https://iili.io/HWdl3Al.md.jpg" alt="Mountain Top"></div>
+            <div class="slide" data-caption="Palm Trees"><img src="https://iili.io/HWdlRDB.md.jpg" alt="Palm Trees"></div>
+            <div class="slide" data-caption="Neon Sign"><img src="https://iili.io/HWdlWDN.md.jpg" alt="Neon Sign"></div>
+            <div class="slide" data-caption="Mountain Top"><img src="https://iili.io/HWdl3Al.md.jpg" alt="Mountain Top"></div>
+            <div class="slide" data-caption="Palm Trees"><img src="https://iili.io/HWdlRDB.md.jpg" alt="Palm Trees"></div>
+            <div class="slide" data-caption="Neon Sign"><img src="https://iili.io/HWdlWDN.md.jpg" alt="Neon Sign"></div>
+            <div class="slide" data-caption="Mountain Top"><img src="https://iili.io/HWdl3Al.md.jpg" alt="Mountain Top"></div>
+            <div class="slide" data-caption="Palm Trees"><img src="https://iili.io/HWdlRDB.md.jpg" alt="Palm Trees"></div>
+            <div class="slide" data-caption="Neon Sign"><img src="https://iili.io/HWdlWDN.md.jpg" alt="Neon Sign"></div>
+            <!-- Add more slides as needed -->
+        </div>
+        <div class="dots"></div>
+    </div>
+
+</div>
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const slideshow = document.querySelector('.slides');
+    const dotsContainer = document.querySelector('.dots');
+
+    let currentSlide = 0;
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlide();
+    }
+
+    function updateSlide() {
+      slideshow.style.transition = `transform 0.5s ease-in-out`;
+      slideshow.style.transform = `translateX(${-currentSlide * 100}%)`;
+      updateDots();
+    }
+
+    function updateDots() {
+      const dots = Array.from(dotsContainer.children);
+      dots.forEach((dot, index) => {
+        if (index === currentSlide) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function goToSlide(slideIndex) {
+      currentSlide = slideIndex;
+      updateSlide();
+    }
+
+    setInterval(nextSlide, 3000); // Change slide every 3 seconds
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+      });
+      dotsContainer.appendChild(dot);
+
+      const captionText = slide.dataset.caption;
+      const caption = document.createElement('div');
+      caption.classList.add('caption');
+      caption.textContent = captionText;
+      slide.appendChild(caption);
+    });
+</script>

@@ -1,0 +1,117 @@
+﻿
+
+/* Container Styles */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    justify-content:center;
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-gap: 20px;
+    justify-content:center;
+}
+
+/* Card Styles */
+.item-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+    //width:75%;
+    justify-items:center;
+    
+}
+
+    .item-card:hover {
+        transform: translateY(-5px);
+    }
+
+.item-image {
+   // width: 50%;
+    height: auto;
+    border-bottom: 1px solid #eee;
+    align-content:center;
+}
+
+.item-details {
+    padding: 20px;
+}
+
+.item-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.item-description {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.item-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .add-to-cart:hover {
+        background-color: #0056b3;
+    }
+
+.shop-now {
+    text-align: center;
+    margin-top: 30px;
+}
+
+    .shop-now a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+/* Media Queries */
+@media (min-width: 992px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr );
+        justify-content:center;
+    }
+}
+
+@media (max-width: 991px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center;
+    }
+}
